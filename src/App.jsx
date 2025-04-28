@@ -12,7 +12,7 @@ export default function App() {
             .fill(0)
             .map(() => ({
                 value: Math.ceil(Math.random() * 6), 
-                isHeld: true,
+                isHeld: false,
                 id: nanoid()
             }))
     }
@@ -31,7 +31,9 @@ export default function App() {
     }
 
     function hold(id) {
-        console.log(id)
+        setDice(prevDice => prevDice.map(prev => {
+            return prev.id === id ? {...prev, isHeld: !prev.isHeld} : prev
+        }))
     }
 
     return (
