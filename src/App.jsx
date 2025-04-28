@@ -12,13 +12,13 @@ export default function App() {
             .fill(0)
             .map(() => ({
                 value: Math.ceil(Math.random() * 6), 
-                isHeld: false,
+                isHeld: true,
                 id: nanoid()
             }))
     }
 
     const diceElements = dice.map(dieObject => 
-        <Die key={dieObject.id} value={dieObject.value} />
+        <Die key={dieObject.id} value={dieObject.value} isHeld={dieObject.isHeld} />
     )
 
     function rollDice() {
