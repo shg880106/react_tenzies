@@ -1,4 +1,4 @@
-import { useState} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Die from './components/Die'
 import { nanoid } from 'nanoid';
@@ -8,7 +8,13 @@ export default function App() {
     
     const [dice, setDice] = useState(() => generateAllNewDice())
     const gameWon = dice.every(die => die.isHeld) && dice.every(die => die.value === dice[0].value)
-    
+    const newGameButtonRef = useRef(null)
+
+    useEffect(() => {
+        if (gameWon) {
+            newGameButtonRef.current.focus()              
+        }
+    }, [gameWon]) 
 
     function generateAllNewDice() {
         return new Array(10)
@@ -61,11 +67,12 @@ export default function App() {
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <div className='dice-container'>                
                 {diceElements}
-            </div>   
+            </div>              
             
-            <button className='roll-dice' onClick={rollDice}>
+            <button className='roll-dice' onClick={rollDice} ref={newGameButtonRef}>
                 {gameWon ? "New Game" : "Roll"}                
-            </button>                     
+            </button> 
+                               
         </main>
   )
 }
