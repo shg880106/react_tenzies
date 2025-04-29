@@ -1,3 +1,7 @@
+# Url to access the app
+
+https://shg880106.github.io/react_tenzies/
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
